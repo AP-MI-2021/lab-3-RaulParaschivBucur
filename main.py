@@ -122,9 +122,6 @@ def test_get_longest_concat_is_prime():
     assert get_longest_concat_is_prime([2, 2, 4, 2, 2, 2]) == [2]
 
 
-
-
-
 def read_list() -> list[int]:
     size = int(input('Alege dimensiunea listei: '))
     lst = []
@@ -150,20 +147,20 @@ def main():
             print('Lista introdusa: ', lst)
 
         elif optiune == 2:
-            if lst == []:
+            if not lst:
                 print('Nu ai introdus inca lista')
             else:
                 print('Cea mai lunga subsecv cu produsul elementelor impar este:', get_longest_product_is_odd(lst))
 
         elif optiune == 3:
-            if lst == []:
+            if not lst:
                 print('Nu ai introdus inca lista')
             else:
                 print('Cea mai l subsecv in care concat el are cif în ord cresc este:',
                       get_longest_concat_digits_asc(lst))
 
         elif optiune == 4:
-            if lst == []:
+            if not lst:
                 print('Nu ai introdus inca lista')
             else:
                 print('Cea mai lunga subsecv in care concat el este nr prim este:', get_longest_concat_is_prime(lst))
