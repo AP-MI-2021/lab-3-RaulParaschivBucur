@@ -150,20 +150,20 @@ def main():
             if not lst:
                 print('Nu ai introdus inca lista')
             else:
-                print('Cea mai lunga subsecv cu produsul elementelor impar este:', get_longest_product_is_odd(lst))
+                print('Cea mai lunga subsecv cu produsul elementelor impar este: ', get_longest_product_is_odd(lst))
 
         elif optiune == 3:
             if not lst:
                 print('Nu ai introdus inca lista')
             else:
-                print('Cea mai l subsecv in care concat el are cif în ord cresc este:',
+                print('Cea mai l subsecv in care concat el are cif în ord cresc este: ',
                       get_longest_concat_digits_asc(lst))
 
         elif optiune == 4:
             if not lst:
                 print('Nu ai introdus inca lista')
             else:
-                print('Cea mai lunga subsecv in care concat el este nr prim este:', get_longest_concat_is_prime(lst))
+                print('Cea mai lunga subsecv in care concat el este nr prim este: ', get_longest_concat_is_prime(lst))
 
         elif optiune == 5:
             break
