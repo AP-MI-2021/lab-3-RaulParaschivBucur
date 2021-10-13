@@ -72,6 +72,59 @@ def test_get_longest_concat_digits_asc():
     assert get_longest_concat_digits_asc([12, 3, 2, 1, 1, 23, 4, 9, 1, 2, 1]) == [1, 1, 23, 4, 9]
 
 
+# 20)
+def is_prime(n):
+    """
+    Verifica daca numarul n este prim
+    """
+    if n < 2:
+        return False
+    for div in range(2, n // 2 + 1):
+        if (n % div) == 0:
+            return False
+    return True
+
+
+def concat_is_prime(lst):
+    """
+    Verifica daca o lista are concatenarea elementelor un nr prim
+    """
+    concat = ''
+    for elem in lst:
+        concat += str(elem)
+
+    if is_prime(int(concat)):
+        return True
+    else:
+        return False
+
+
+def get_longest_concat_is_prime(lst: list[int]) -> list[int]:
+    """
+    Input: O lista
+    Output: Cea mai lunga secventa in care concat elementelor este nr prim
+    """
+    result_lst = []
+    maxim = 0
+    for pos1 in range(0, len(lst)):
+        for pos2 in range(pos1, len(lst)):
+            if concat_is_prime(lst[pos1:pos2 + 1]):
+                if len(lst[pos1:pos2 + 1]) >= maxim:
+                    maxim = len(lst[pos1:pos2 + 1])
+                    result_lst = lst[pos1:pos2 + 1]
+    return result_lst
+
+
+def test_get_longest_concat_is_prime():
+    assert get_longest_concat_is_prime([1, 3, 4, 6, 0, 1]) == [6, 0, 1]
+    assert get_longest_concat_is_prime([1]) == []
+    assert get_longest_concat_is_prime([]) == []
+    assert get_longest_concat_is_prime([2, 2, 4, 2, 2, 2]) == [2]
+
+
+
+
+
 def read_list() -> list[int]:
     size = int(input('Alege dimensiunea listei: '))
     lst = []
@@ -89,25 +142,37 @@ def main():
         print("1. Citire lista")
         print("2. Det. cea mai lunga subsecv. in care produsul numerelor este impar")
         print("3. Det. cea mai lunga subsecv. in care concat. elementelor are cifrele în ordine cresc")
-        print("4. Iesire")
+        print("4. Det. cea mai lunga subsecv. in care concat. elementelor este un nr prim")
+        print("5. Iesire")
         optiune = int(input('Alege o optiune: '))
         if optiune == 1:
             lst = read_list()
             print('Lista introdusa: ', lst)
+
         elif optiune == 2:
             if lst == []:
                 print('Nu ai introdus inca lista')
             else:
                 print('Cea mai lunga subsecv cu produsul elementelor impar este:', get_longest_product_is_odd(lst))
+
         elif optiune == 3:
             if lst == []:
                 print('Nu ai introdus inca lista')
             else:
-                print('Cea mai lunga subsecv in care concat elementelor are cif în ord cresc este:', get_longest_concat_digits_asc(lst))
+                print('Cea mai l subsecv in care concat el are cif în ord cresc este:',
+                      get_longest_concat_digits_asc(lst))
+
         elif optiune == 4:
+            if lst == []:
+                print('Nu ai introdus inca lista')
+            else:
+                print('Cea mai lunga subsecv in care concat el este nr prim este:', get_longest_concat_is_prime(lst))
+
+        elif optiune == 5:
             break
 
 
-test_get_longest_product_is_odd()
 test_get_longest_concat_digits_asc()
+test_get_longest_product_is_odd()
+test_get_longest_concat_is_prime()
 main()
